@@ -1,0 +1,22 @@
+.questionBox__container {
+  padding: 5px 10px ;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.questionBox__container p {
+  transition: 300ms ease-in-out;  
+}
+
+.questionBox__active {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.questionBox__hidden {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}

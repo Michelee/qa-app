@@ -1,0 +1,40 @@
+.modal__background {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.modal__content {
+  position: relative;
+  padding: 30px;
+  border-radius: 15px;
+  background-color: #F2EDE7;
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+.modal__closeIcon {
+  position: absolute;
+  right: 25px;
+  top: 25px;
+  cursor: pointer;
+}
+
+.modal__closeIcon svg {
+  width: 25px;
+}
+
+.modal__open {
+  visibility: visible;
+  opacity: 1;
+  transition: visibility 0s linear 0s, opacity 300ms;
+}
+
+.modal__close {
+  visibility: hidden;
+  opacity: 0;
+  transition: visibility 0s linear 300ms, opacity 300ms;
+}
