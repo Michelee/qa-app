@@ -14,9 +14,10 @@
   background: white;
   visibility: hidden;
   opacity: 0;
-  top: 48px;
   left: 50%;
-  margin-left: -50px;
+  width: 100%;
+  max-width: 200px;
+  transform: translate(-50%, -15px);
   transition: visibility 300s linear 0s, opacity 300ms;
 }
 

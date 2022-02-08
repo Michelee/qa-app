@@ -10,6 +10,10 @@
   font-size: 12px;
 }
 
+.form__container button {
+  margin-top: 30px;
+}
+
 @media (min-width: 476px) {
   .form__container {
     margin: 35px auto;

@@ -11,7 +11,7 @@ import {
   edit,
   remove,
   sort,
-} from "./redux/module/questions";
+} from "./reducers/module/questions";
 import "./styles/App.css";
 
 const App = () => {
