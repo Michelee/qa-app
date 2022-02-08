@@ -1,0 +1,17 @@
+.form__container {
+  max-width: 500px;
+  margin: 10px auto 0;
+}
+
+.form__error {
+  display: block;
+  margin: 10px 0;
+  color: #8b0000;
+  font-size: 12px;
+}
+
+@media (min-width: 476px) {
+  .form__container {
+    margin: 35px auto;
+  }
+}

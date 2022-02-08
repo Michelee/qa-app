@@ -1,15 +1,23 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Button from "./components/Button";
 import Form from "./components/Form";
 import Modal from "./components/Modal";
 import QuestionBox from "./components/QuestionBox";
-import { add, edit, remove, sort } from "./reducers/module/questions";
+import Tooltip from "./components/Tooltip";
+import {
+  add,
+  addDelayedQuestion,
+  edit,
+  remove,
+  sort,
+} from "./redux/module/questions";
 import "./styles/App.css";
 
 const App = () => {
   const [openModal, setOpenModal] = useState(false);
+  const [addDelay, setAddDelay] = useState(false);
   const [error, setError] = useState("");
-  const [loading, setLoading] = useState(false);
   const [formValues, setFormValues] = useState({
     question: "",
     answer: "",
@@ -18,6 +26,25 @@ const App = () => {
 
   const dispatch = useDispatch();
   const questions = useSelector((state) => state.questions.list);
+  const loading = useSelector((state) => state.questions.loading);
+
+  useEffect(() => {
+    if (questions.length) {
+      setOpenModal(false);
+    }
+  }, [questions]);
+
+  useEffect(() => {
+    if (!openModal) {
+      setFormValues({
+        question: "",
+        answer: "",
+        id: "",
+      });
+      setAddDelay(false);
+      setError("");
+    }
+  }, [openModal]);
 
   const handleSubmit = (ev) => {
     ev.preventDefault();
@@ -25,22 +52,19 @@ const App = () => {
 
     if (!question || !answer) {
       setError("Please complete all the values");
-      setLoading(false);
       return;
     }
 
-    dispatch(id ? edit(formValues) : add(formValues));
-    setFormValues({
-      question: "",
-      answer: "",
-      id: "",
-    });
-    setOpenModal(false);
+    if (addDelay) {
+      dispatch(addDelayedQuestion(formValues));
+    } else {
+      dispatch(id ? edit(formValues) : add(formValues));
+    }
   };
 
-  const handleDelete = (val) => {
+  const handleDelete = (id) => {
     if (window.confirm("Do you really want to delete the question?")) {
-      dispatch(remove(val));
+      dispatch(remove(id));
     }
   };
 
@@ -50,41 +74,62 @@ const App = () => {
       ...formValues,
       [name]: value,
     });
+    setError("");
   };
 
   const handleEdit = (values) => {
     setFormValues(values);
-    setOpenModal(true)
+    setOpenModal(true);
   };
 
   return (
     <div className="app__container">
       <header className="app__header">
-        <h1>The awesome Q/A Tool</h1>
+        <h1 data-testid="app-title">The awesome Q/A Tool</h1>
       </header>
-      <h2>List of Questions</h2>
-      <div>
-        {questions.length ? (
-          <button onClick={() => dispatch(sort())}>Sort Questions</button>
-        ) : (
-          ""
+
+      <div className="app__actions-buttons">
+        {questions.length > 0 && (
+          <Button
+            dataTest="sort-button"
+            handleClick={() => dispatch(sort())}
+            label="Sort Questions"
+          />
         )}
-        <button onClick={() => setOpenModal(true)}>Add Question</button>
+        <Button
+          dataTest="add-button"
+          handleClick={() => setOpenModal(true)}
+          label="Create Question"
+        />
       </div>
+
       <div className="app__content">
+        <Tooltip text="Here you can find the created questions and their answers">
+          <h2>Created Questions</h2>
+        </Tooltip>
+        <p>
+          Here you can find {questions.length || "no"}{" "}
+          {`question${questions.length === 1 ? "" : "s"}`}. Feel free to create
+          your own questions!
+        </p>
+
         <Modal openModal={openModal} setOpenModal={setOpenModal}>
-          <h2>Add Question</h2>
+          <Tooltip text="Here you create/edit new questions and their answers">
+            <h2>{formValues.id ? "Edit your" : "Create a new"} question</h2>
+          </Tooltip>
           <Form
             handleChange={handleChange}
             handleSubmit={handleSubmit}
             error={error}
             loading={loading}
             formValues={formValues}
+            handleDelay={setAddDelay}
+            addDelay={addDelay}
           />
         </Modal>
 
         {questions?.length ? (
-          <div className="app__list">
+          <div className="app__questions-list">
             {questions.map((item, index) => (
               <QuestionBox
                 key={item.id}
@@ -96,7 +141,7 @@ const App = () => {
             ))}
           </div>
         ) : (
-          <div>No questions asked. Create the first one!</div>
+          <div className="app__no-questions-box">No questions yet :-(</div>
         )}
       </div>
     </div>

@@ -4,91 +4,44 @@
 
 .app__header {
   padding: 15px;
-  background-color: #F2EDE7;
-}
-
-.app__title {
-  width: 100%;
-  background-color: #323232;
-  height: 80px;
-  text-align: center;
-}
-
-.app__title h1 {
-  color: white;
-  padding: 16px 0;
-  margin: 0;
-}
-
-.app__form {
-  margin-top: 30px;
-  display: inline-block;
-  text-align: left;
-  background-color: rgb(92 141 165 / 15%);
-  padding: 10px 20px 20px;
-  border-radius: 10px;
-}
-
-.app__amount-input {
-  padding: 10px;
-  border: 1px solid;
-  border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box;
-}
-
-.app__form-error {
-  display: block;
-  margin: 10px 0;
-  color: #8b0000;
-  font-size: 12px;
-}
-
-.app__dropdowns-box h3 {
-  font-size: 20px;
-}
-
-.app__form-loading {
-  color: #323232;
-  display: block;
-  text-align: center;
-  margin: 30px auto 10px;
-  width: 100%;
-}
-
-.app__form-submit-button {
-  background-color: #323232;
-  color: white;
-  text-transform: uppercase;
-  font-size: 14px;
-  padding: 10px;
-  border: none;
-  font-weight: bold;
-  margin: 30px auto 10px auto;
-  display: block;
-  cursor: pointer;
-}
-
-.app__results-box {
-  margin-top: 50px;
+  background-color: #f2ede7;
 }
 
 .app__content {
-  padding: 20px;
+  padding: 10px;
+}
+
+.app__actions-buttons {
+  border: 1px #323232 dotted;
+  padding: 20px 10px;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.app__questions-list {
+  max-width: 600px;
+  margin: 0 auto 35px;
+}
+
+.app__no-questions-box {
+  border: 1px solid #8b0000;
+  padding: 15px;
+  color: #8b0000;
+  background-color: rgba(139, 0, 0, 0.3);
+  border-radius: 4px;
+  max-width: 600px;
+  margin: 50px auto;
 }
 
 @media (min-width: 600px) {
-  .app__content {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
+  .app__actions-buttons {
+    padding: 20px 50px;
+    text-align: right;
   }
+}
 
-  .app__form {
-    width: 30%;
-  }
-
-  .app__results-box {
-    width: 70%;
+@media (min-width: 476px) {
+  .app__questions-list {
+    margin: 30px auto;
   }
 }

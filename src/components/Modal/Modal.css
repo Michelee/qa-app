@@ -1,19 +1,20 @@
 .modal__background {
   background-color: rgba(0, 0, 0, 0.5);
-  position: absolute;
+  position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
   right: 0;
+  transition: visibility 0s linear 0s, opacity 300ms;
 }
 
 .modal__content {
   position: relative;
   padding: 30px;
   border-radius: 15px;
-  background-color: #F2EDE7;
+  background-color: #f2ede7;
   max-width: 600px;
-  margin: 50px auto;
+  margin: 50px 10px;
 }
 
 .modal__closeIcon {
@@ -37,4 +38,10 @@
   visibility: hidden;
   opacity: 0;
   transition: visibility 0s linear 300ms, opacity 300ms;
+}
+
+@media (min-width: 600px) {
+  .modal__content {
+    margin: 50px auto;
+  }
 }

@@ -1,23 +1,48 @@
 import React from "react";
+import Button from "../Button";
+import Checkbox from "../Checkbox";
 import Input from "../Input";
+import Textarea from "../Textarea";
+import './Form.css'
 
-const Form = ({ error, formValues, handleChange, setAnswer, loading, handleSubmit }) => {
+const Form = ({
+  error,
+  formValues,
+  handleChange,
+  loading,
+  addDelay,
+  handleDelay,
+  handleSubmit,
+}) => {
   const { question, answer } = formValues;
   return (
-    <form onSubmit={handleSubmit}>
-      <Input label="Question" name="question" value={question} handleChange={handleChange} />
-      <Input label="Answer" name="answer" value={answer} handleChange={handleChange} />
-      {error && <span className="app__form-error">{error}</span>}
-      {loading ? (
-        <span className="app__form-loading">Loading...</span>
-      ) : (
-        <input
-          data-test="submit-button"
-          type="submit"
-          className="app__form-submit-button"
-          value="Submit"
+    <form className="form__container" onSubmit={handleSubmit}>
+      <Input
+        label="Question"
+        name="question"
+        value={question}
+        handleChange={handleChange}
+        dataTest="form-question"
+      />
+      <Textarea
+        label="Answer"
+        name="answer"
+        value={answer}
+        handleChange={handleChange}
+        dataTest="form-answer"
+      />
+      {!formValues?.id && (
+        <Checkbox
+          label="Add 5s delay"
+          name="delay"
+          value={addDelay}
+          handleChange={handleDelay}
+          dataTest="form-add-delay"
         />
       )}
+
+      {error && <span className="form__error" data-testid="form-error">{error}</span>}
+      <Button dataTest="form-submit" type="submit" label="Submit" loading={loading} />
     </form>
   );
 };

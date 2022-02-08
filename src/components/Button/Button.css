@@ -1,0 +1,28 @@
+.app__button {
+  outline: none;
+  background-color: #323232;
+  color: white;
+  text-transform: uppercase;
+  padding: 10px 30px;
+  margin: 5px;
+  border: 1px solid #323232;
+  cursor: pointer;
+  transition: 300ms;
+  border-radius: 3px;
+  font-weight: bold;
+  width: 100%;
+  margin: 5px 0;
+}
+
+.app__button:hover,
+.app__button:disabled {
+  background-color: transparent;
+  color: #323232;
+}
+
+@media (min-width: 476px) {
+  .app__button {
+    width: initial;
+    margin: 0 5px;
+  }
+}

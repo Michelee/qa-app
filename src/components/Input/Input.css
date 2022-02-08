@@ -1,0 +1,24 @@
+.input__container {
+  margin: 10px auto;
+}
+
+.input__container label {
+  font-size: 12px;
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.input__container input {
+  border: 1px #bebdbd solid;
+  outline: none;
+  padding: 10px;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.input__container input:focus {
+  border: 1px #323232 solid;
+}
+

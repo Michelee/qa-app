@@ -1,15 +1,37 @@
 import React, { useState } from "react";
-import './QuestionBox.css'
+import { ReactComponent as EditIcon } from '../../assets/icons/edit-icon.svg'
+import { ReactComponent as DeleteIcon } from '../../assets/icons/delete-icon.svg'
+import "./QuestionBox.css";
 
-const QuestionBox = ({ question, answer, number, id, handleDelete, handleEdit }) => {
+const QuestionBox = ({
+  question,
+  answer,
+  number,
+  id,
+  handleDelete,
+  handleEdit,
+}) => {
   const [showQuestion, setShowQuestion] = useState();
   return (
-    <div className="questionBox__container" onClick={() => setShowQuestion(!showQuestion)}>
-      <button onClick={() => handleDelete(id)}>Delete</button>
-      <button onClick={() => handleEdit({ question, answer, id})}>Edit</button>
-      <h3>{number}. {question}</h3>
-      <p className={showQuestion ? 'questionBox__active': 'questionBox__hidden'}>{answer}</p>
-
+    <div className="questionBox__container">
+      <div className="questionBox__title-actions">
+        <h3 onClick={() => setShowQuestion(!showQuestion)} data-testid={`question-title-${number}`}>
+          {number}. {question}
+        </h3>
+        <div className="questionBox__actions">
+          <div onClick={() => handleEdit({ question, answer, id })} data-testid={`edit-question-${number}`}>
+            <EditIcon />
+          </div>
+          <div onClick={() => handleDelete(id)} data-testid={`delete-question-${number}`}>
+            <DeleteIcon />
+          </div>
+        </div>
+      </div>
+      <p
+        className={showQuestion ? "questionBox__active" : "questionBox__hidden"}
+      >
+        {answer}
+      </p>
     </div>
   );
 };

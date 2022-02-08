@@ -4,7 +4,7 @@ import "./Modal.css";
 
 const Modal = ({ openModal, setOpenModal, children }) => (
   <div className={`modal__background ${openModal ? 'modal__open' : 'modal__close'}`}>
-    <div className="modal__content">
+    <div className="modal__content" data-testid="modal-container">
       <div
         className="modal__closeIcon"
         onClick={() => setOpenModal(!openModal)}

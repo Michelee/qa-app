@@ -1,0 +1,22 @@
+.textarea__container label {
+  font-size: 12px;
+  display: block;
+  text-align: left;
+  margin-bottom: 8px;
+}
+
+.textarea__container textarea {
+  resize: none;
+  border: 1px #bebdbd solid;
+  outline: none;
+  padding: 10px;
+  border-radius: 3px;
+  width: 100%;
+  box-sizing: border-box;
+  font-family: inherit;
+  font-size: 12px;
+}
+
+.textarea__container textarea:focus {
+  border: 1px #323232 solid;
+}
